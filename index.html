@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Abhinay Pedhapati | DevPortfolio</title>
+  <!-- Google Fonts + Font Awesome 6 -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ====== GLOBAL STYLES ====== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0c10;
+      color: #eef2ff;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 30%, rgba(20, 30, 48, 0.9), rgba(5, 8, 18, 0.95));
+      z-index: -2;
+    }
+    
+    /* ========== GLITCH OPENING ANIMATION ========== */
+    .animation-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #0a0c10, #0a0a0a);
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeOutOverlay 0.8s ease-in-out 3s forwards;
+      pointer-events: none;
+    }
+    
+    .animation-content {
+      text-align: center;
+      transform: scale(0.9);
+      opacity: 0;
+      animation: zoomInContent 0.6s ease-out 0.2s forwards;
+    }
+    
+    .glitching-name {
+      font-size: 3.5rem;
+      font-weight: 800;
+      letter-spacing: 6px;
+      font-family: 'Courier New', monospace;
+      background: linear-gradient(120deg, #00ffff, #ff00ff, #00ffff, #ff00ff);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: glitch 0.2s infinite, gradientShift 1.5s ease infinite;
+      text-shadow: 0 0 10px #00ffff, 0 0 5px #ff00ff;
+    }
+    
+    @keyframes glitch {
+      0% { text-shadow: -3px 0 #ff00ff, 3px 0 #00ffff; transform: skew(0deg); }
+      20% { text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff; transform: skew(2deg); }
+      40% { text-shadow: -2px 0 #00ffff, 2px 0 #ff00ff; transform: skew(-2deg); }
+      60% { text-shadow: 3px 0 #ff00ff, -3px 0 #00ffff; transform: skew(1deg); }
+      80% { text-shadow: -2px 0 #00ffff, 2px 0 #ff00ff; transform: skew(-1deg); }
+      100% { text-shadow: -3px 0 #ff00ff, 3px 0 #00ffff; transform: skew(0deg); }
+    }
+    
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+    
+    .glitch-sub {
+      font-family: 'Courier New', monospace;
+      font-size: 1rem;
+      margin-top: 1.5rem;
+      color: #00ffff;
+      letter-spacing: 2px;
+      animation: blinkText 0.8s ease-in-out infinite alternate;
+      text-shadow: 0 0 5px #ff00ff;
+    }
+    
+    @keyframes blinkText {
+      0% { opacity: 0.7; text-shadow: 0 0 2px #00ffff; }
+      100% { opacity: 1; text-shadow: 0 0 15px #00ffff, 0 0 8px #ff00ff; }
+    }
+    
+    @keyframes zoomInContent {
+      0% { transform: scale(0.7); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    
+    @keyframes fadeOutOverlay {
+      0% { opacity: 1; visibility: visible; }
+      100% { opacity: 0; visibility: hidden; }
+    }
+    
+    main, .navbar {
+      animation: mainContentFade 0.6s ease-out 3s forwards;
+      opacity: 0;
+    }
+    
+    @keyframes mainContentFade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    /* ====== MAIN STYLES ====== */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.8rem;
+    }
+
+    .navbar {
+      background: rgba(10, 20, 30, 0.75);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.8rem;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-weight: 800;
+      font-size: 1.6rem;
+      background: linear-gradient(120deg, #00ffff, #ff00ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #ccdeee;
+      transition: 0.3s;
+    }
+    .nav-links a:hover {
+      color: #00ffff;
+      text-shadow: 0 0 6px #ff00ff;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 3rem 0 2rem;
+      border-bottom: 1px solid rgba(0, 255, 255, 0.15);
+    }
+    .hero-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+    .hero-left { flex: 2; min-width: 260px; }
+    .hero-right { flex: 1; display: flex; justify-content: center; }
+    
+    .hero-text h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #00ffff, #ff00ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+      animation: nameGlowPulse 2s infinite;
+    }
+    
+    @keyframes nameGlowPulse {
+      0% { text-shadow: 0 0 0px transparent; }
+      50% { text-shadow: 0 0 12px rgba(0, 255, 255, 0.6), 0 0 8px rgba(255, 0, 255, 0.4); }
+      100% { text-shadow: 0 0 0px transparent; }
+    }
+    
+    .hero-tagline {
+      font-size: 1.1rem;
+      color: #00ffff;
+      font-weight: 500;
+      animation: floatText 3s ease-in-out infinite;
+    }
+    
+    @keyframes floatText {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-3px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin: 1.2rem 0;
+      font-size: 0.9rem;
+    }
+    .contact-info a, .contact-info span { color: #b9e2ff; text-decoration: none; transition: 0.2s; }
+    .contact-info a:hover { color: #00ffff; text-shadow: 0 0 3px #ff00ff; }
+    .contact-info i { width: 1.3rem; color: #00ffff; margin-right: 6px; }
+    
+    .hero-buttons { margin-top: 1.6rem; display: flex; gap: 1.2rem; flex-wrap: wrap; }
+    
+    /* Buttons */
+    .btn {
+      padding: 0.7rem 1.7rem;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: none;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0,255,255,0.3), transparent);
+      transition: left 0.5s ease;
+      z-index: -1;
+    }
+    .btn:hover::before { left: 100%; }
+    
+    .btn-primary {
+      background: linear-gradient(95deg, #0f2f3f, #1b6d85);
+      color: white;
+      box-shadow: 0 0 8px rgba(0, 200, 255, 0.5);
+      animation: subtlePulse 2s infinite;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 25px #00ffff, 0 0 15px #ff00ff;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #00ffff;
+      color: #00ffff;
+    }
+    .btn-outline:hover {
+      border-color: #ff00ff;
+      color: #ff00ff;
+      box-shadow: 0 0 20px #00ffff, 0 0 10px #ff00ff;
+    }
+    
+    @keyframes subtlePulse {
+      0% { box-shadow: 0 0 5px rgba(0, 200, 255, 0.5); }
+      100% { box-shadow: 0 0 15px rgba(0, 200, 255, 0.8), 0 0 8px rgba(255, 0, 255, 0.5); }
+    }
+    
+    /* Profile Image - FIXED WITH abhi.png */
+    .profile-image-slot {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #00ffff;
+      box-shadow: 0 0 20px rgba(0, 200, 255, 0.5);
+      transition: 0.3s;
+      cursor: default;
+    }
+    .profile-image-slot:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 28px #00ffff, 0 0 15px #ff00ff;
+      border-color: #ff00ff;
+    }
+    .profile-image-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    /* Sections & Cards */
+    section { padding: 2.8rem 0; border-bottom: 1px solid rgba(72, 187, 255, 0.1); }
+    .section-title {
+      font-size: 1.9rem;
+      font-weight: 700;
+      margin-bottom: 1.8rem;
+      display: inline-block;
+      color: #00ffff;
+      text-shadow: 0 0 5px #ff00ff;
+      position: relative;
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #00ffff, #ff00ff);
+      border-radius: 6px;
+    }
+    
+    .card {
+      background: rgba(18, 25, 40, 0.55);
+      backdrop-filter: blur(8px);
+      border-radius: 28px;
+      padding: 1.6rem 1.8rem;
+      margin-bottom: 1.6rem;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      transition: all 0.25s;
+    }
+    .card:hover {
+      border-color: #ff00ff;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(0, 160, 255, 0.2);
+    }
+    .grid-2col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-badge {
+      background: rgba(0, 200, 255, 0.12);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      display: inline-block;
+      margin: 0.2rem;
+      transition: 0.2s;
+    }
+    .skill-badge:hover {
+      border-color: #ff00ff;
+      box-shadow: 0 0 8px cyan;
+      color: #00ffff;
+    }
+    .project-card {
+      background: rgba(10, 18, 28, 0.7);
+      border-radius: 24px;
+      padding: 1.2rem;
+      margin-bottom: 1rem;
+      border-left: 3px solid #00ffff;
+      transition: 0.2s;
+    }
+    .project-card:hover { border-left-color: #ff00ff; box-shadow: 0 0 15px rgba(0, 255, 255, 0.3); }
+    .cert-link {
+      color: #00ffff;
+      text-decoration: none;
+      border-bottom: 1px dashed #ff00ff;
+    }
+    .cert-link:hover { color: #ff00ff; text-shadow: 0 0 8px cyan; }
+    .inline-icon { margin-right: 0.4rem; color: #00ffff; }
+    .tech-stack { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.6rem 0; }
+    
+    @media (max-width: 680px) {
+      .container { padding: 0 1rem; }
+      .hero-text h1 { font-size: 2rem; }
+      .nav-links { gap: 1rem; }
+      .hero-content { flex-direction: column; text-align: center; }
+      .glitching-name { font-size: 1.8rem; letter-spacing: 2px; }
+      .section-title { font-size: 1.5rem; display: block; text-align: center; }
+      .section-title:after { left: 50%; transform: translateX(-50%); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- GLITCH OPENING ANIMATION -->
+<div class="animation-overlay" id="animationOverlay">
+  <div class="animation-content">
+    <div class="glitching-name" id="glitchName">ABHINAY PEDHAPATI</div>
+    <div class="glitch-sub" id="glitchSub">> INITIALIZING_SECURE_CONNECTION...</div>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo">abhinay.dev</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#summary">Summary</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <!-- HERO SECTION WITH YOUR abhi.png IMAGE -->
+  <section id="home" class="hero">
+    <div class="container hero-content">
+      <div class="hero-left">
+        <div class="hero-text">
+          <h1>Abhinay Pedhapati</h1>
+          <div class="hero-tagline">CSE Student | Full-Stack Developer | Cybersecurity Enthusiast</div>
+          <div class="contact-info">
+            <span><i class="fas fa-envelope"></i> pedhapatiabhinay@gmail.com</span>
+            <span><i class="fas fa-phone-alt"></i> +91 9014845818</span>
+            <a href="#" id="github-link-hero"><i class="fab fa-github"></i> GitHub</a>
+            <a href="#" id="linkedin-link-hero"><i class="fab fa-linkedin"></i> LinkedIn</a>
+          </div>
+          <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary">Explore Work <i class="fas fa-arrow-right"></i></a>
+            <a href="#contact" class="btn btn-outline">Let's Connect</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <!-- YOUR PROFILE IMAGE: abhi.png -->
+        <div class="profile-image-slot" id="profileSlot">
+          <img id="profileImage" src="abhi.png" alt="Abhinay Pedhapati" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- PROFESSIONAL SUMMARY -->
+    <section id="summary">
+      <h2 class="section-title">Professional Summary</h2>
+      <div class="card">
+        <p>Motivated B.Tech 3rd-year student specializing in Cybersecurity and Web Development with hands-on experience in secure authentication systems, password analysis tools, and full-stack projects. Passionate about solving real-world security challenges and building scalable applications.</p>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <h2 class="section-title">Education</h2>
+      <div class="card">
+        <div style="display: flex; flex-direction: column; gap: 1.4rem;">
+          <div><h3 style="color: #00ffff;">🎓 B.Tech - CSE</h3><p>Seshadri Rao Gudlavalleru Engineering College | <strong>CGPA: 8.1/10</strong></p><p style="color:#9bb8da;">2024 – 2028</p></div>
+          <div><h3 style="color: #00ffff;">📘 Intermediate (MPC)</h3><p>Sri Srinivasa Junior College | <strong>93.2%</strong></p><p style="color:#9bb8da;">2022 – 2024</p></div>
+          <div><h3 style="color: #00ffff;">📖 SSC (10th)</h3><p>Sri Chaitanya Techno School | <strong>90.1%</strong></p><p style="color:#9bb8da;">2021 – 2022</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <h2 class="section-title">Technical Arsenal & Skills</h2>
+      <div class="grid-2col">
+        <div class="card">
+          <h3><i class="fas fa-code inline-icon"></i> Programming</h3>
+          <div><span class="skill-badge">Python</span><span class="skill-badge">Java</span><span class="skill-badge">C</span><span class="skill-badge">JavaScript</span></div>
+          <h3 style="margin-top: 1rem;"><i class="fas fa-globe inline-icon"></i> Web Technologies</h3>
+          <div><span class="skill-badge">HTML5</span><span class="skill-badge">CSS3</span><span class="skill-badge">React.js</span><span class="skill-badge">Node.js</span></div>
+          <h3 style="margin-top: 1rem;"><i class="fas fa-database inline-icon"></i> Databases</h3>
+          <div><span class="skill-badge">MySQL</span><span class="skill-badge">MongoDB</span></div>
+        </div>
+        <div class="card">
+          <h3><i class="fas fa-tools inline-icon"></i> Tools & Concepts</h3>
+          <div><span class="skill-badge">VS Code</span><span class="skill-badge">Git/GitHub</span><span class="skill-badge">DSA</span><span class="skill-badge">OOPs</span><span class="skill-badge">DBMS</span></div>
+          <h3 style="margin-top: 1rem;"><i class="fas fa-users inline-icon"></i> Soft Skills</h3>
+          <div><span class="skill-badge">Problem Solving</span><span class="skill-badge">Teamwork</span><span class="skill-badge">Communication</span></div>
+          <h3 style="margin-top: 1rem;"><i class="fas fa-language inline-icon"></i> Languages</h3>
+          <div><span class="skill-badge">Telugu (Native)</span><span class="skill-badge">English (Fluent)</span><span class="skill-badge">Hindi (Intermediate)</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION WITH LIVE LINKS -->
+    <section id="projects">
+      <h2 class="section-title">Featured Projects</h2>
+      
+      <div class="project-card">
+        <h3 style="font-size: 1.35rem; color: #00ffff;">⚡ CodeVerse – Professional Polyglot Compiler</h3>
+        <p>Full-stack online code compiler supporting 12+ languages with live execution, snippet management & authentication system.</p>
+        <div class="tech-stack"><span class="skill-badge">HTML5</span><span class="skill-badge">CSS3</span><span class="skill-badge">JavaScript</span><span class="skill-badge">Auth</span></div>
+        <a href="https://abhinaypedhapati.github.io/CodeVerse" target="_blank" class="btn-outline project-btn" style="display: inline-block; padding: 0.4rem 1.2rem; font-size: 0.8rem; margin-top: 0.8rem; text-decoration: none;">🔗 Launch CodeVerse</a>
+      </div>
+      
+      <div class="project-card">
+        <h3 style="font-size: 1.35rem; color: #00ffff;">🔐 Password Strength Analyzer</h3>
+        <p>Cybersecurity tool using Python & SQLite to analyze password strength, prevent password reuse using SHA-256 hashing and entropy calculation.</p>
+        <div class="tech-stack"><span class="skill-badge">Python</span><span class="skill-badge">SQLite</span><span class="skill-badge">Hashing</span></div>
+        <a href="https://abhinaypedhapati.github.io/password-strength-analyzer/" target="_blank" class="btn-outline project-btn" style="display: inline-block; padding: 0.4rem 1.2rem; font-size: 0.8rem; margin-top: 0.8rem; text-decoration: none;">🔍 Try Analyzer</a>
+      </div>
+      
+      <div class="project-card">
+        <h3 style="font-size: 1.35rem; color: #00ffff;">🛡️ PhishShield – AI Phishing Email Detector</h3>
+        <p>AI-based detection using Flask & Scikit-learn (Random Forest) achieving 96%+ accuracy with TF-IDF and URL analysis.</p>
+        <div class="tech-stack"><span class="skill-badge">Flask</span><span class="skill-badge">Scikit-learn</span><span class="skill-badge">ML</span></div>
+        <a href="https://phishing-email-detector-crqt.onrender.com" target="_blank" class="btn-outline project-btn" style="display: inline-block; padding: 0.4rem 1.2rem; font-size: 0.8rem; margin-top: 0.8rem; text-decoration: none;">📧 Try PhishShield AI</a>
+      </div>
+    </section>
+
+    <!-- CERTIFICATES -->
+    <section id="certificates">
+      <h2 class="section-title">Certificates & Achievements</h2>
+      <div class="card">
+        <p><i class="fas fa-trophy inline-icon"></i> <strong>Prajwalan 2K26</strong> – 24-hour National Level Hackathon &nbsp; 
+          <a href="#" id="certLink1" class="cert-link"><i class="fas fa-external-link-alt"></i> View Certificate</a>
+        </p>
+        <p style="margin-top: 0.8rem;"><i class="fas fa-medal inline-icon"></i> <strong>AVISHKAR Hackathon 2K26</strong> – Real-Time Blood & Oxygen System &nbsp;
+          <a href="#" id="certLink2" class="cert-link"><i class="fas fa-external-link-alt"></i> View Certificate</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2 class="section-title">Connect with me</h2>
+      <div class="card" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.2rem;">
+        <div>
+          <p><i class="fas fa-envelope inline-icon"></i> pedhapatiabhinay@gmail.com</p>
+          <p><i class="fas fa-phone-alt inline-icon"></i> +91 9014845818</p>
+          <p><i class="fab fa-github inline-icon"></i> <a href="#" id="github-foot" style="color:#00ffff;">github.com/abhinaypedhapati</a></p>
+          <p><i class="fab fa-linkedin inline-icon"></i> <a href="#" id="linkedin-foot" style="color:#00ffff;">linkedin.com/in/abhinay-pedhapati</a></p>
+        </div>
+        <div>
+          <a href="mailto:pedhapatiabhinay@gmail.com" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Send Email</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script>
+  // ========== GLITCH EFFECT (Opening Animation) ==========
+  let glitchInterval;
+  const glitchNameEl = document.getElementById('glitchName');
+  const originalName = "ABHINAY PEDHAPATI";
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+  
+  function startGlitchEffect() {
+    let iterations = 0;
+    glitchInterval = setInterval(() => {
+      if (iterations < 30) {
+        let glitched = "";
+        for (let i = 0; i < originalName.length; i++) {
+          if (Math.random() > 0.7) glitched += chars[Math.floor(Math.random() * chars.length)];
+          else glitched += originalName[i];
+        }
+        glitchNameEl.innerText = glitched;
+        iterations++;
+      } else {
+        clearInterval(glitchInterval);
+        glitchNameEl.innerText = originalName;
+        const glitchSub = document.getElementById('glitchSub');
+        const messages = ["> ACCESS_GRANTED", "> WELCOME_ABHINAY", "> PORTFOLIO_LOADED"];
+        let idx = 0;
+        const subInterval = setInterval(() => {
+          if (idx < messages.length) { glitchSub.innerText = messages[idx]; idx++; }
+          else clearInterval(subInterval);
+        }, 400);
+      }
+    }, 80);
+  }
+  startGlitchEffect();
+
+  // Certificate links
+  document.getElementById('certLink1')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.open('https://media.licdn.com/dms/image/v2/D5622AQFjrf8hTIKUpA/feedshare-shrink_800/B56Z0wGgd_GsAc-/0/1774628505738?e=1781136000&v=beta&t=Ctta0fFt544jPSRRfe3KawP4hCxfoeIdW3H0gcamNrQ', '_blank');
+  });
+  document.getElementById('certLink2')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.open('https://media.licdn.com/dms/image/v2/D5622AQGKrxfN6OVWYA/feedshare-shrink_800/B56ZzPDHWUIkAg-/0/1773000226450?e=1781136000&v=beta&t=XyCK4PdHK5M7L1mKsjesDfK6O40ja8yi5JkXrwViTl8', '_blank');
+  });
+
+  // Social links
+  function openGitHub() { window.open('https://github.com/abhinaypedhapati', '_blank'); }
+  function openLinkedIn() { window.open('https://www.linkedin.com/in/abhinay-pedhapati-247abb335', '_blank'); }
+  document.getElementById('github-link-hero')?.addEventListener('click', (e) => { e.preventDefault(); openGitHub(); });
+  document.getElementById('linkedin-link-hero')?.addEventListener('click', (e) => { e.preventDefault(); openLinkedIn(); });
+  document.getElementById('github-foot')?.addEventListener('click', (e) => { e.preventDefault(); openGitHub(); });
+  document.getElementById('linkedin-foot')?.addEventListener('click', (e) => { e.preventDefault(); openLinkedIn(); });
+
+  // Smooth scroll
+  document.querySelectorAll('.nav-links a, .hero-buttons a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        const target = document.getElementById(href.substring(1));
+        target?.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
